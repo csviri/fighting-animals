@@ -19,7 +19,7 @@
     <google-java-format.version>1.15.0</google-java-format.version>
     <spotless-maven-plugin.version>2.29.0</spotless-maven-plugin.version>
     <skip.spotless>false</skip.spotless>
-    <spring.boot.mainclass>io.opentelemetry.examples.Runner</spring.boot.mainclass>
+    <mainclass>io.opentelemetry.examples.animal.AnimalApplication</mainclass>
   </properties>
 
   <dependencies>
@@ -40,16 +40,15 @@
   <build>
 
     <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <goals>
-          <goal>repackage</goal>
-        </goals>
-        <configuration>
-          <mainClass>${spring.boot.mainclass}</mainClass>
-        </configuration>
-      </plugin>
+      <!--      <plugin>-->
+      <!--        <groupId>org.springframework.boot</groupId>-->
+      <!--        <artifactId>spring-boot-maven-plugin</artifactId>-->
+      <!--        <configuration>-->
+      <!--          <mainClass>${mainclass}</mainClass>-->
+      <!--        </configuration>-->
+      <!--      </plugin>-->
+
+      <!--   Spring Boot maven plugin is not used. Using assembly plugin instead. So we can run different applications with "-cp" -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -62,7 +61,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>${spring.boot.mainclass}</mainClass>
+                  <mainClass>${mainclass}</mainClass>
                 </manifest>
               </archive>
               <descriptorRefs>
